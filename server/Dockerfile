@@ -1,7 +1,13 @@
+
+# server/Dockerfile
 FROM node:18
-WORKDIR /server
-COPY src/ /server/src
-COPY prisma/ /server/prisma
-COPY package.json /server
+
+WORKDIR /app
+
+COPY package*.json ./
 RUN npm install
-RUN npx prisma generate
+
+COPY . .
+
+EXPOSE 5000
+CMD ["npm", "start"]
